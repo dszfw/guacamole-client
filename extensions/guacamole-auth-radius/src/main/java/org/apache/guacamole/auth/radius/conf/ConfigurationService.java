@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.guacamole.auth.radius;
+package org.apache.guacamole.auth.radius.conf;
 
 import com.google.inject.Inject;
 import java.io.File;
@@ -314,6 +314,25 @@ public class ConfigurationService {
     public String getRadiusEAPTTLSInnerProtocol() throws GuacamoleException {
         return environment.getProperty(
             RadiusGuacamoleProperties.RADIUS_EAP_TTLS_INNER_PROTOCOL
+        );
+    }
+    
+    /**
+     * Return the attribute that should be used to look for a vendor-specific
+     * RADIUS attribute that contains a list of groups of which the user
+     * is a member.  The default is null.
+     * 
+     * @return
+     *     The attribute that should be used to look for a vendor-specific
+     *     RADIUS attribute that contains a list of groups of which the
+     *     user is a member, or null if it is not specified.
+     * 
+     * @throws GuacamoleException 
+     *     If guacamole.properties cannot be parsed.
+     */
+    public String getRadiusGroupAttribute() throws GuacamoleException {
+        return environment.getProperty(
+            RadiusGuacamoleProperties.RADIUS_GROUP_ATTRIBUTE
         );
     }
 

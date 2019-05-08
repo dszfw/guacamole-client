@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.guacamole.auth.radius.conf.ConfigurationService;
 import org.apache.guacamole.auth.radius.user.AuthenticatedUser;
 import org.apache.guacamole.auth.radius.form.RadiusChallengeResponseField;
 import org.apache.guacamole.auth.radius.form.RadiusStateField;
@@ -37,11 +38,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.jradius.dictionary.Attr_State;
 import net.jradius.dictionary.Attr_ReplyMessage;
+import net.jradius.exception.UnknownAttributeException;
 import net.jradius.packet.RadiusPacket;
 import net.jradius.packet.AccessAccept;
 import net.jradius.packet.AccessChallenge;
 import net.jradius.packet.AccessReject;
 import net.jradius.packet.attribute.RadiusAttribute;
+import net.jradius.packet.attribute.value.AttributeValue;
 
 /**
  * Service providing convenience functions for the RADIUS AuthenticationProvider
@@ -54,6 +57,12 @@ public class AuthenticationProviderService {
      */
     private final Logger logger = LoggerFactory.getLogger(AuthenticationProviderService.class);
 
+    /**
+     * The configuration service for this authentication provider.
+     */
+    @Inject
+    private ConfigurationService confService;
+    
     /**
      * Service for creating and managing connections to RADIUS servers.
      */
@@ -195,6 +204,21 @@ public class AuthenticationProviderService {
         else if (radPack instanceof AccessAccept) {
             AuthenticatedUser authenticatedUser = authenticatedUserProvider.get();
             authenticatedUser.init(credentials);
+            
+            String groupAttr = confService.getRadiusGroupAttribute();
+            if (groupAttr != null) {
+                try {
+                    RadiusAttribute radiusGroups = radPack.findAttribute(groupAttr);
+                    AttributeValue groupsValue = radiusGroups.getValue();
+                    if (groupsValue != null && groupsValue.getLength() > 0)
+                        authenticatedUser.setUserGroups(groupsValue.toString());
+                }
+                catch (UnknownAttributeException e) {
+                    logger.warn("Group attribute not provided by RADIUS server.");
+                    logger.debug("Unable to find group attribute in RADIUS packet.", e);
+                }
+            }
+            
             return authenticatedUser;
         }
 

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.guacamole.auth.radius;
+package org.apache.guacamole.auth.radius.conf;
 
 import org.apache.guacamole.properties.BooleanGuacamoleProperty;
 import org.apache.guacamole.properties.FileGuacamoleProperty;
@@ -186,6 +186,18 @@ public class RadiusGuacamoleProperties {
         @Override
         public String getName() { return "radius-eap-ttls-inner-protocol"; }
 
+    };
+    
+    /**
+     * The vendor-specific attribute to use for retrieving group membership
+     * from RADIUS.
+     */
+    public static final StringGuacamoleProperty RADIUS_GROUP_ATTRIBUTE =
+            new StringGuacamoleProperty() {
+    
+        @Override
+        public String getName() { return "radius-group-attribute"; }
+    
     };
 
 
