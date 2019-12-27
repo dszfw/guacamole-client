@@ -22,6 +22,7 @@ package org.apache.guacamole.auth.mysql;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.TimeZone;
 import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.auth.jdbc.JDBCEnvironment;
 import org.slf4j.Logger;
@@ -299,6 +300,20 @@ public class MySQLEnvironment extends JDBCEnvironment {
             return false;
         }
 
+    }
+    
+    /**
+     * Return the server timezone if configured in guacamole.properties, or
+     * null if the configuration option is not present.
+     * 
+     * @return
+     *     The server timezone as configured in guacamole.properties.
+     * 
+     * @throws GuacamoleException 
+     *     If an error occurs retrieving the configuration value.
+     */
+    public TimeZone getServerTimeZone() throws GuacamoleException {
+        return getProperty(MySQLGuacamoleProperties.SERVER_TIMEZONE);
     }
 
 }
