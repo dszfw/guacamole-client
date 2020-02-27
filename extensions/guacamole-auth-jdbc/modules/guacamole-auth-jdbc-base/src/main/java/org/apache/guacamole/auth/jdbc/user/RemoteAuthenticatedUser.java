@@ -24,11 +24,13 @@ import java.util.Set;
 import org.apache.guacamole.net.auth.AuthenticatedUser;
 import org.apache.guacamole.net.auth.AuthenticationProvider;
 import org.apache.guacamole.net.auth.Credentials;
+import org.apache.guacamole.net.auth.Permissions;
 
 /**
  * An AuthenticatedUser that has an associated remote host.
  */
-public abstract class RemoteAuthenticatedUser implements AuthenticatedUser {
+public abstract class RemoteAuthenticatedUser
+        implements AuthenticatedUser, Permissions {
 
     /**
      * The credentials given when this user authenticated.

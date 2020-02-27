@@ -23,9 +23,12 @@ import com.google.common.collect.Sets;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.net.auth.AuthenticatedUser;
 import org.apache.guacamole.net.auth.AuthenticationProvider;
 import org.apache.guacamole.net.auth.Credentials;
+import org.apache.guacamole.net.auth.permission.ObjectPermissionSet;
+import org.apache.guacamole.net.auth.permission.SystemPermissionSet;
 
 /**
  * Associates a user with the credentials they used to authenticate, their
@@ -174,6 +177,47 @@ public class ModeledAuthenticatedUser extends RemoteAuthenticatedUser {
     public Set<String> getEffectiveUserGroups() {
         return Sets.union(user.getEffectiveUserGroups(),
                 super.getEffectiveUserGroups());
+    }
+
+    @Override
+    public ObjectPermissionSet getActiveConnectionPermissions()
+            throws GuacamoleException {
+        return user.getActiveConnectionPermissions();
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionGroupPermissions()
+            throws GuacamoleException {
+        return user.getConnectionGroupPermissions();
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionPermissions()
+            throws GuacamoleException {
+        return user.getConnectionPermissions();
+    }
+
+    @Override
+    public ObjectPermissionSet getSharingProfilePermissions()
+            throws GuacamoleException {
+        return user.getSharingProfilePermissions();
+    }
+
+    @Override
+    public SystemPermissionSet getSystemPermissions()
+            throws GuacamoleException {
+        return user.getSystemPermissions();
+    }
+
+    @Override
+    public ObjectPermissionSet getUserPermissions()
+            throws GuacamoleException {
+        return user.getUserPermissions();
+    }
+
+    @Override
+    public ObjectPermissionSet getUserGroupPermissions() throws GuacamoleException {
+        return user.getUserGroupPermissions();
     }
 
 }

@@ -20,10 +20,13 @@
 package org.apache.guacamole.auth.jdbc.sharing.user;
 
 import java.util.Collections;
+import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.auth.jdbc.user.RemoteAuthenticatedUser;
 import org.apache.guacamole.net.auth.AuthenticatedUser;
 import org.apache.guacamole.net.auth.AuthenticationProvider;
 import org.apache.guacamole.net.auth.Credentials;
+import org.apache.guacamole.net.auth.permission.ObjectPermissionSet;
+import org.apache.guacamole.net.auth.permission.SystemPermissionSet;
 
 /**
  * Associates a user with the credentials they used to authenticate, including
@@ -99,7 +102,57 @@ public class SharedAuthenticatedUser extends RemoteAuthenticatedUser {
 
     @Override
     public void setIdentifier(String identifier) {
-        throw new UnsupportedOperationException("Users authenticated via share keys are immutable.");
+        throw new UnsupportedOperationException(
+                "Users authenticated via share keys are immutable.");
+    }
+
+    @Override
+    public ObjectPermissionSet getActiveConnectionPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionGroupPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getSharingProfilePermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public SystemPermissionSet getSystemPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getUserPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getUserGroupPermissions()
+            throws GuacamoleException {
+        throw new UnsupportedOperationException(
+                "Shared users do not have any assigned permissions.");
     }
 
 }
