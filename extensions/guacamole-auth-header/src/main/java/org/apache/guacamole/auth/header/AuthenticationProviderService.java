@@ -22,12 +22,12 @@ package org.apache.guacamole.auth.header;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.guacamole.auth.header.user.HeaderAuthenticatedUser;
 import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.net.auth.Credentials;
 import org.apache.guacamole.net.auth.credentials.CredentialsInfo;
 import org.apache.guacamole.net.auth.credentials.GuacamoleInvalidCredentialsException;
-import org.apache.guacamole.auth.header.user.AuthenticatedUser;
-import java.security.Principal;
+import org.apache.guacamole.net.auth.AuthenticatedUser;
 
 /**
  * Service providing convenience functions for the HTTP Header
@@ -45,7 +45,7 @@ public class AuthenticationProviderService {
      * Provider for AuthenticatedUser objects.
      */
     @Inject
-    private Provider<AuthenticatedUser> authenticatedUserProvider;
+    private Provider<HeaderAuthenticatedUser> authenticatedUserProvider;
 
     /**
      * Returns an AuthenticatedUser representing the user authenticated by the
@@ -73,7 +73,7 @@ public class AuthenticationProviderService {
             String username = request.getHeader(confService.getHttpAuthHeader());
 
             if (username != null) {
-                AuthenticatedUser authenticatedUser = authenticatedUserProvider.get();
+                HeaderAuthenticatedUser authenticatedUser = authenticatedUserProvider.get();
                 authenticatedUser.init(username, credentials);
                 return authenticatedUser;
             }

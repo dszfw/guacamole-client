@@ -123,10 +123,9 @@ public class LDAPAuthenticatedUser extends AbstractAuthenticatedUser {
     public Credentials getCredentials() {
         return credentials;
     }
-
+    
     @Override
     public Set<String> getEffectiveUserGroups() {
         return effectiveGroups;
     }
-
 }

@@ -29,7 +29,7 @@ import org.apache.guacamole.net.auth.Credentials;
  * username and particular set of credentials with the HTTP authentication
  * provider.
  */
-public class AuthenticatedUser extends AbstractAuthenticatedUser {
+public class HeaderAuthenticatedUser extends AbstractAuthenticatedUser {
 
     /**
      * Reference to the authentication provider associated with this

@@ -21,6 +21,10 @@ package org.apache.guacamole.net.auth;
 
 import java.util.Collections;
 import java.util.Set;
+import org.apache.guacamole.GuacamoleException;
+import org.apache.guacamole.GuacamoleUnsupportedException;
+import org.apache.guacamole.net.auth.permission.ObjectPermissionSet;
+import org.apache.guacamole.net.auth.permission.SystemPermissionSet;
 
 /**
  * Basic implementation of an AuthenticatedUser which uses the username to
@@ -39,6 +43,41 @@ public abstract class AbstractAuthenticatedUser extends AbstractIdentifiable
     @Override
     public void invalidate() {
         // Nothing to invalidate
+    }
+    
+    @Override
+    public ObjectPermissionSet getActiveConnectionPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionGroupPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getConnectionPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getSharingProfilePermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public SystemPermissionSet getSystemPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getUserPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
+    }
+
+    @Override
+    public ObjectPermissionSet getUserGroupPermissions() throws GuacamoleException {
+        throw new GuacamoleUnsupportedException("This AuthenticatedUser does not provide permissions.");
     }
 
 }

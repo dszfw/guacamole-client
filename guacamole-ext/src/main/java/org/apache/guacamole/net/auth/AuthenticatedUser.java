@@ -25,7 +25,7 @@ import java.util.Set;
  * A user of the Guacamole web application who has been authenticated by an
  * AuthenticationProvider.
  */
-public interface AuthenticatedUser extends Identifiable {
+public interface AuthenticatedUser extends Identifiable, Permissions {
 
     /**
      * The identifier reserved for representing a user that has authenticated

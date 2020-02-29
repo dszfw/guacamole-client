@@ -23,7 +23,6 @@ import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.net.auth.AbstractAuthenticatedUser;
 import org.apache.guacamole.net.auth.AuthenticationProvider;
 import org.apache.guacamole.net.auth.Credentials;
-import org.apache.guacamole.net.auth.Permissions;
 import org.apache.guacamole.net.auth.permission.ObjectPermissionSet;
 import org.apache.guacamole.net.auth.permission.SystemPermissionSet;
 
@@ -34,8 +33,7 @@ import org.apache.guacamole.net.auth.permission.SystemPermissionSet;
  * tasks within the various authentication extension modules that may be
  * loaded.
  */
-public class GuacamoleSystemUser extends AbstractAuthenticatedUser
-        implements Permissions {
+public class GuacamoleSystemUser extends AbstractAuthenticatedUser {
     
     /**
      * The SystemPermissionSet that represents Guacamole's system-level
