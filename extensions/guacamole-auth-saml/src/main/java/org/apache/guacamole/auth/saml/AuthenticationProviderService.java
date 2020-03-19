@@ -36,9 +36,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import org.apache.guacamole.auth.saml.conf.ConfigurationService;
 import org.apache.guacamole.auth.saml.form.SAMLRedirectField;
-import org.apache.guacamole.auth.saml.user.AuthenticatedUser;
+import org.apache.guacamole.auth.saml.user.SAMLAuthenticatedUser;
 import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.form.Field;
+import org.apache.guacamole.net.auth.AuthenticatedUser;
 import org.apache.guacamole.net.auth.Credentials;
 import org.apache.guacamole.net.auth.credentials.CredentialsInfo;
 import org.apache.guacamole.net.auth.credentials.GuacamoleInvalidCredentialsException;
@@ -67,7 +68,7 @@ public class AuthenticationProviderService {
      * Provider for AuthenticatedUser objects.
      */
     @Inject
-    private Provider<AuthenticatedUser> authenticatedUserProvider;
+    private Provider<SAMLAuthenticatedUser> authenticatedUserProvider;
 
     /**
      * Returns an AuthenticatedUser representing the user authenticated by the
@@ -123,7 +124,7 @@ public class AuthenticationProviderService {
                     String username = samlResponse.getNameId().toLowerCase();
                     if (username != null) {
                         credentials.setUsername(username);
-                        AuthenticatedUser authenticatedUser = authenticatedUserProvider.get();
+                        SAMLAuthenticatedUser authenticatedUser = authenticatedUserProvider.get();
                         authenticatedUser.init(username, credentials);
                         return authenticatedUser;
                     }

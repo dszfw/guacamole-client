@@ -24,14 +24,14 @@ import com.onelogin.saml2.settings.IdPMetadataParser;
 import com.onelogin.saml2.settings.Saml2Settings;
 import com.onelogin.saml2.settings.SettingsBuilder;
 import java.io.File;
-import java.net.URL;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.guacamole.GuacamoleException;
 import org.apache.guacamole.GuacamoleServerException;
 import org.apache.guacamole.environment.Environment;
 import org.apache.guacamole.properties.FileGuacamoleProperty;
-import org.apache.guacamole.properties.UrlGuacamoleProperty;
+import org.apache.guacamole.properties.URIGuacamoleProperty;
 
 /**
  * Service for retrieving configuration information regarding the SAML
@@ -53,8 +53,8 @@ public class ConfigurationService {
     /**
      * The URL of the SAML IdP.
      */
-    private static final UrlGuacamoleProperty SAML_IDP_URL =
-            new UrlGuacamoleProperty() {
+    private static final URIGuacamoleProperty SAML_IDP_URL =
+            new URIGuacamoleProperty() {
 
         @Override
         public String getName() { return "saml-idp-url"; }
@@ -64,8 +64,8 @@ public class ConfigurationService {
     /**
      * The URL identifier for this SAML client.
      */
-    private static final UrlGuacamoleProperty SAML_ENTITY_ID =
-            new UrlGuacamoleProperty() {
+    private static final URIGuacamoleProperty SAML_ENTITY_ID =
+            new URIGuacamoleProperty() {
 
         @Override
         public String getName() { return "saml-entity-id"; }
@@ -76,8 +76,8 @@ public class ConfigurationService {
      * The callback URL to use for SAML IdP, normally the base
      * of the Guacamole install.
      */
-    private static final UrlGuacamoleProperty SAML_CALLBACK_URL =
-            new UrlGuacamoleProperty() {
+    private static final URIGuacamoleProperty SAML_CALLBACK_URL =
+            new URIGuacamoleProperty() {
 
         @Override
         public String getName() { return "saml-callback-url"; }
@@ -87,8 +87,8 @@ public class ConfigurationService {
     /**
      * The single logout redirect URL.
      */
-    private static final UrlGuacamoleProperty SAML_LOGOUT_URL =
-            new UrlGuacamoleProperty() {
+    private static final URIGuacamoleProperty SAML_LOGOUT_URL =
+            new URIGuacamoleProperty() {
 
         @Override
         public String getName() { return "saml-logout-url"; }
@@ -114,7 +114,7 @@ public class ConfigurationService {
      *     If guacamole.properties cannot be parsed, or if the
      *     property is missing.
      */
-    private URL getEntityId() throws GuacamoleException {
+    private URI getEntityId() throws GuacamoleException {
         return environment.getRequiredProperty(SAML_ENTITY_ID);
     }
 
@@ -145,7 +145,7 @@ public class ConfigurationService {
      * @throws GuacamoleException
      *     If guacamole.properties cannot be parsed.
      */
-    private URL getIdpUrl() throws GuacamoleException {
+    private URI getIdpUrl() throws GuacamoleException {
         return environment.getProperty(
             SAML_IDP_URL,
             null
@@ -165,7 +165,7 @@ public class ConfigurationService {
      *     If guacamole.properties cannot be parsed, or if the
      *     callback parameter is missing.
      */
-    public URL getCallbackUrl() throws GuacamoleException {
+    public URI getCallbackUrl() throws GuacamoleException {
         return environment.getRequiredProperty(SAML_CALLBACK_URL);
     }
 
@@ -178,7 +178,7 @@ public class ConfigurationService {
      * @throws GuacamoleException
      *     If guacamole.properties cannot be parsed.
      */
-    private URL getLogoutUrl() throws GuacamoleException {
+    private URI getLogoutUrl() throws GuacamoleException {
         return environment.getProperty(
             SAML_LOGOUT_URL,
             null
