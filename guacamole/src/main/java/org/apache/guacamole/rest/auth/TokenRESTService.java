@@ -180,7 +180,7 @@ public class TokenRESTService {
 
         // Build list of all available auth providers
         List<DecoratedUserContext> userContexts = session.getUserContexts();
-        List<String> authProviderIdentifiers = new ArrayList<String>(userContexts.size());
+        List<String> authProviderIdentifiers = new ArrayList<>(userContexts.size());
         for (UserContext userContext : userContexts)
             authProviderIdentifiers.add(userContext.getAuthenticationProvider().getIdentifier());
 
