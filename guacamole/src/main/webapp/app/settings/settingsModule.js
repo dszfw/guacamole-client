@@ -22,6 +22,7 @@
  * "manage" module, which deals only with administrator-level system management.
  */
 angular.module('settings', [
+    'element',
     'groupList',
     'list',
     'navigation',

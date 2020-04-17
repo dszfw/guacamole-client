@@ -110,6 +110,13 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
          * @type Boolean
          */
         this.expanded = template.expanded;
+        
+        /**
+         * Whther the context menu is visible or not.
+         * 
+         * @type Boolean
+         */
+        this.showContextMenu = false;
 
         /**
          * Returns the number of currently active users for this connection,

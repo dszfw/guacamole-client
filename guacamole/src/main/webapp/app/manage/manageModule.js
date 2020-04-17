@@ -21,6 +21,7 @@
  * The module for the administration functionality.
  */
 angular.module('manage', [
+    'element',
     'form',
     'groupList',
     'list',
