@@ -247,6 +247,9 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
 
             // Already-converted children
             children : children,
+            
+            // Context menu items
+            contextActions : contextActions,
 
             // Count of currently active connections using this connection
             getActiveConnections : function getActiveConnections() {
