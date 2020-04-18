@@ -370,6 +370,8 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
                 return connectionGroup.activeConnections;
 
             },
+            
+            contextActions: [],
 
 
             // Wrapped item
@@ -409,7 +411,9 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
             type : GroupListItem.Type.SHARING_PROFILE,
 
             // Wrapped item
-            wrappedItem : sharingProfile
+            wrappedItem : sharingProfile,
+            
+            contextActions: []
 
         });
 
