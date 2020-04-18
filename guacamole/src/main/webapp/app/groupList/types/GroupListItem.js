@@ -25,7 +25,11 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
     // Required types
     var ClientIdentifier = $injector.get('ClientIdentifier');
     var ConnectionGroup  = $injector.get('ConnectionGroup');
-
+    var MenuAction       = $injector.get('MenuAction');
+    
+    // Required services
+    var $log = $injector.get("$log");
+    
     /**
      * Creates a new GroupListItem, initializing the properties of that
      * GroupListItem with the corresponding properties of the given template.
@@ -247,9 +251,6 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
 
             // Already-converted children
             children : children,
-            
-            // Context menu items
-            contextActions : contextActions,
 
             // Count of currently active connections using this connection
             getActiveConnections : function getActiveConnections() {
@@ -261,6 +262,19 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
                 return connection.activeConnections;
 
             },
+            
+            contextActions: [
+                {
+                    name: 'CONTEXT_MENU.TEST_ACTION',
+                    className: 'test-action',
+                    callback: $log.debug('Testing 1 2 3')
+                },
+                {
+                    name: 'CONTEXT_MENU.TSET_ACTION',
+                    className: 'test-action',
+                    callback: $log.debug('Testing 3 2 1')
+                }
+            ],
 
             // Wrapped item
             wrappedItem : connection
