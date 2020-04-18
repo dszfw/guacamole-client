@@ -57,7 +57,7 @@ angular.module('navigation').directive('guacContextMenu', [function guacContextM
             function guacContextMenuController($scope, $injector) {
 
             // Get required services
-            var $log = injector.get('$log');
+            var $log = $injector.get('$log');
 
             $scope.example = function example() {
                 $log.debug('Example action.');
