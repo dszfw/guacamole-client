@@ -1,0 +1,14 @@
+<div class="context-menu" ng-show="showContextMenu">
+    <guac-menu menu-title="title">
+
+        <!-- Context-driven actions -->
+        <ul class="action-list">
+            <li ng-repeat="action in contextActions">
+                <a ng-class="action.className" ng-click="action.callback()">
+                    {{action.name | translate}}
+                </a>
+            </li>
+        </ul>
+        
+    </guac-menu>
+</div>
