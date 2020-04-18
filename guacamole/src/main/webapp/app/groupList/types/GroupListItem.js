@@ -117,6 +117,14 @@ angular.module('groupList').factory('GroupListItem', ['$injector', function defi
          * @type Boolean
          */
         this.showContextMenu = false;
+        
+        /**
+         * A set of menu actions that will be displayed on this items
+         * context menu.
+         * 
+         * @type MenuAction[]
+         */
+        this.contextActions = template.contextActions;
 
         /**
          * Returns the number of currently active users for this connection,

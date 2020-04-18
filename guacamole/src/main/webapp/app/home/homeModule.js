@@ -17,4 +17,11 @@
  * under the License.
  */
 
-angular.module('home', ['client', 'groupList', 'history', 'navigation', 'rest']);
+angular.module('home', [
+    'client',
+    'element',
+    'groupList',
+    'history',
+    'navigation',
+    'rest'
+]);

@@ -1,5 +1,6 @@
 <a ng-href="#/manage/{{item.dataSource}}/connections/{{item.identifier}}"
-   ng-class="{active: item.getActiveConnections()}">
+   ng-class="{active: item.getActiveConnections()}"
+   guac-context visible="item.showContextMenu">
 
     <!-- Connection icon -->
     <div class="icon type" ng-class="item.protocol"></div>
@@ -11,5 +12,9 @@
     <span class="activeUserCount" ng-show="item.getActiveConnections()"
         translate="SETTINGS_CONNECTIONS.INFO_ACTIVE_USER_COUNT"
         translate-values="{USERS: item.getActiveConnections()}"></span>
+    
+    <!-- Context menu -->
+    <guac-context-menu showContextMenu="item.showContextMenu"
+                       contextActions="item.contextActions"/>
 
 </a>
