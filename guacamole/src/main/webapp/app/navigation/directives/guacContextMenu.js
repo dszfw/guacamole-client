@@ -58,10 +58,6 @@ angular.module('navigation').directive('guacContextMenu', [function guacContextM
 
             // Get required services
             var $log = $injector.get('$log');
-
-            $scope.example = function example() {
-                $log.debug('Example action.');
-            }
                 
             /**
              * Action which logs out the current user, redirecting them to back
@@ -70,7 +66,9 @@ angular.module('navigation').directive('guacContextMenu', [function guacContextM
             var EXAMPLE_ACTION = {
                 name      : 'USER_MENU.ACTION_EXAMPLE',
                 className : 'example',
-                callback  : $scope.example
+                callback  : function example() {
+                    $log.debug('Example action.');
+                }
             };
 
             /**
