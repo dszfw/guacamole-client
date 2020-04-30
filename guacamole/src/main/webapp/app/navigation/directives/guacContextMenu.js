@@ -37,6 +37,13 @@ angular.module('navigation').directive('guacContextMenu', [function guacContextM
             contextActions : '=',
             
             /**
+             * Controls whether or not this context menu is displayed.
+             * 
+             * @type Boolean
+             */
+            showContextMenu : '=',
+            
+            /**
              * The title of this context menu.
              * 
              * @type String
